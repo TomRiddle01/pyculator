@@ -5,13 +5,13 @@ from math import *
 
 
 ## Just applying variables
-a = 3           # 3
-b = sin(2)      # 0.9092974268256817
+a = 3           #
+b = sin(2)      #
 
 ## Working with terms
-a       # 3
-a+b     # 3.909297426825682
-2+2+2+2+2 # 10
+a       #
+a+b     #
+2+2+2+2+2 #
 
 
 ## Calculate the normal vector
@@ -20,10 +20,10 @@ a+b     # 3.909297426825682
 v = (100,20)
 
 ## We can calculate normal vector by first calculating its length
-l = sqrt(v[0]**2 + v[1]**2) # 101.9803902718557
+l = sqrt(v[0]**2 + v[1]**2) #
 
 ## And then dividing each number with the length
-v_ = [x/l for x in v] # [0.9805806756909201, 0.19611613513818404]
+v_ = [x/l for x in v] #
 
 
-a+b+2345+sin(3456)   # 2349.154841638403
+a+b+2345+sin(3456)   #
