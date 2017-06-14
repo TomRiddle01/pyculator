@@ -5,11 +5,16 @@ import re
 import json
 import tempfile
 import signal
+import time
 from subprocess import Popen, PIPE, call
 
 
 EDITOR = os.environ.get('EDITOR', 'vim')
 
+# editors that will block the program that starts it (mostly commandline)
+blocking_editors = ["vim", "nvim", "nano", "emacs"]
+# editors that open the file to another process. (Mostly graphical)
+nonblocking_editors = ["subl", "atom"]
 
 def signal_handler(signal, frame):
     sys.exit(0)
@@ -95,13 +100,31 @@ def trace(linenumber, result):
     def execution_loop(filename):
 
         while True:
+            editor_started = time.time()
             call([EDITOR, filename])
+
+            # if the process is nonblocking
+            external = False
+
+            if EDITOR in blocking_editors:
+                external = False
+            elif EDITOR in nonblocking_editors:
+                external = True
+            elif time.time()-editor_started < 0.5:
+                external = True
+                print("Your editor seems to be running in a different process.")
+
+            if external:
+                input("Press enter after your changes to run the file. Ctrl+c to quit.")
+
+
             (newContent, stderr) = Pyculate.execute(filename)
 
             if len(stderr) > 0:
                 print(stderr)
 
-            input("Press enter to edit again. Ctrl+c to quit.")
+            if not external:
+                input("Press enter to edit again. Ctrl+c to quit.")
 
             if newContent == "":
                 exit()
