@@ -1,6 +1,9 @@
-# Pyculator - texteditor-based calculator
+# Pyculator - python-based calculator
 
-Pyculator is a small script that runs python scripts and outputs intermediate results into the source code.
+**DISCLAIMER:** Please be careful when using this tool. It is only a small script executing foreign code. Only run your own python code.
+
+
+Pyculator is a small script that runs other python scripts and outputs intermediate results into the source code.
 
 This enables you to make complex caltulations and repeat these by editing the code again.
 
