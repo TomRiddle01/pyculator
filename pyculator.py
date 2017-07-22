@@ -67,7 +67,9 @@ def trace(linenumber, result):
 
         try:
             traces = dict()
-            traces = json.loads(stdout_data.split(b"\n")[-2].decode())
+            output_lines = stdout_data.split(b"\n") 
+            if len(output_lines) > 1:
+                traces = json.loads(output_lines[-2].decode())
         except ValueError as e:
             print("Tracing failed")
             traces = dict()
