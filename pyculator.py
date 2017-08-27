@@ -43,7 +43,7 @@ atexit.register(exit_handler)
 def trace(linenumber, result):
     if not linenumber in traces:
         traces[linenumber] = []
-    traces[linenumber].append(result)
+    traces[linenumber].append(str(result))
 """
 
         lines = list()
@@ -137,7 +137,7 @@ def trace(linenumber, result):
 
 # Run with temporary file
 if len(sys.argv) == 1:
-    initial_message = "import numpy, sympy\nfrom math import *\n\n\n\n\n\n"
+    initial_message = "import numpy as np\nimport sympy as sp\nimport scipy as sci\nfrom math import *\n\n\n\n\n\n"
 
     with tempfile.NamedTemporaryFile(suffix=".pyculator.py") as tf:
         tf.write(initial_message.encode())
